@@ -1,7 +1,8 @@
 {
   "name": "nparse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A native CLI tool created to read and parse JSON files to stdout",
+  "repository": "https://github.com/Fischbrot/nparse",
   "main": "./bin/app.js",
   "bin": {
     "nparse": "./bin/app.js"
