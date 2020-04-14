@@ -3,7 +3,11 @@ const fs = require("fs")
 let file = ""
 
 if(process.argv[2] == "-f") {
-	file = process.cwd() + "\\" + process.argv[3]
+	if(process.platform === "win32") {
+		file = process.cwd() + "\\" + process.argv[3]
+	} else {
+		file = process.cwd() + "/" + process.argv[3]
+	}
 } else if(process.argv[2] == "-a") {
 	file = process.argv[3]
 } else if(process.argv[2] == "-h" || process.argv[2] == "--help") {
@@ -17,7 +21,11 @@ if(process.argv[4] == undefined) {
 }
 
 fs.readFile(file, 'utf8', (err, data) => {
-    if (err) reject(err)
+    if (err) {
+    	console.log(data)
+    	console.log(file)
+    	process.exit(1)
+    }
     let json = JSON.parse(data)
 	let out = json;
 	let query = process.argv[4].split(">");
